@@ -3,10 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/txtExpenseDate"
+        android:id="@+id/txtBudgetCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="23dp"
+        android:contentDescription="@string/expense_date"
+        android:text="@string/expense_date"
+        app:layout_constraintEnd_toStartOf="@+id/txtBudgetTime"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtBudgetTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -17,40 +28,40 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtExpenseAmount"
+        android:id="@+id/txtBudgetAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/expense_amount"
         android:text="@string/expense_amount"
-        app:layout_constraintStart_toEndOf="@+id/imgExpense"
+        app:layout_constraintStart_toEndOf="@+id/imgBudget"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtExpenseDescription"
+        android:id="@+id/txtBudgetDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="1dp"
         android:contentDescription="@string/expense_description"
         android:text="@string/expense_description"
-        app:layout_constraintStart_toEndOf="@+id/imgExpense"
-        app:layout_constraintTop_toBottomOf="@+id/txtExpenseTitle" />
+        app:layout_constraintStart_toEndOf="@+id/imgBudget"
+        app:layout_constraintTop_toBottomOf="@+id/txtBudgetTitle" />
 
     <TextView
-        android:id="@+id/txtExpenseTitle"
+        android:id="@+id/txtBudgetTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="1dp"
         android:contentDescription="@string/your_expense"
         android:text="@string/your_expense"
-        app:layout_constraintStart_toEndOf="@+id/imgExpense"
-        app:layout_constraintTop_toBottomOf="@+id/txtExpenseAmount" />
+        app:layout_constraintStart_toEndOf="@+id/imgBudget"
+        app:layout_constraintTop_toBottomOf="@+id/txtBudgetAmount" />
 
     <ImageView
-        android:id="@+id/imgExpense"
+        android:id="@+id/imgBudget"
         android:layout_width="58dp"
         android:layout_height="67dp"
         android:layout_marginStart="7dp"

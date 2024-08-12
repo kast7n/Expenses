@@ -5,7 +5,8 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.expenses.models.Expenses
+import com.example.expenses.models.BudgetType
+import com.example.expenses.models.Budget
 
 class DatabaseHelper {
 
@@ -17,13 +18,15 @@ class DatabaseHelper {
             private const val DATABASE_VERSION = 1
 
 
-            private const val TABLE_NAME = "expenses"
+            private const val TABLE_NAME = "budgets"
             private const val COLUMN_ID = "id"
             private const val COLUMN_TITLE = "title"
             private const val COLUMN_AMOUNT = "amount"
             private const val COLUMN_DATE = "date"
             private const val COLUMN_DESCRIPTION = "description"
             private const val COLUMN_CATEGORY = "category"
+            private const val COLUMN_TIME ="time"
+            private const val COLUMN_TYPE = "type"
 
         }
 
@@ -35,7 +38,9 @@ class DatabaseHelper {
                 $COLUMN_AMOUNT REAL,
                 $COLUMN_DATE TEXT,
                 $COLUMN_DESCRIPTION TEXT,
-                $COLUMN_CATEGORY TEXT
+                $COLUMN_CATEGORY TEXT,
+                $COLUMN_TIME TEXT,  
+                $COLUMN_TYPE TEXT   
             )
         """.trimIndent()
             db.execSQL(createTable)
@@ -46,7 +51,7 @@ class DatabaseHelper {
             onCreate(db)
         }
 
-        fun insertExpense(expense: Expenses): Long {
+        fun insertBudget(expense: Budget): Long {
             val db = this.writableDatabase
             val values = ContentValues().apply {
                 put(COLUMN_TITLE, expense.title)
@@ -54,6 +59,8 @@ class DatabaseHelper {
                 put(COLUMN_DATE, expense.date)
                 put(COLUMN_DESCRIPTION, expense.description)
                 put(COLUMN_CATEGORY, expense.category)
+                put(COLUMN_TIME, expense.time)
+                put(COLUMN_TYPE, expense.type.name)
             }
             return db.insert(TABLE_NAME, null, values)
         }
@@ -65,26 +72,32 @@ class DatabaseHelper {
         }
 
         @SuppressLint("Range")
-        fun getAllExpenses(): List<Expenses> {
-            val expenses = mutableListOf<Expenses>()
+        fun getAllBudgets(): List<Budget> {
+            val budgets = mutableListOf<Budget>()
             val db = this.readableDatabase
             val cursor = db.query(TABLE_NAME, null, null, null, null, null, null)
             cursor?.use {
                 while (it.moveToNext()) {
                     val id = it.getString(it.getColumnIndex(COLUMN_ID))
                     val title = it.getString(it.getColumnIndex(COLUMN_TITLE))
-                    val amount = it.getString(it.getColumnIndex(COLUMN_AMOUNT))
+                    val amount = it.getDouble(it.getColumnIndex(COLUMN_AMOUNT))
                     val date = it.getString(it.getColumnIndex(COLUMN_DATE))
                     val description = it.getString(it.getColumnIndex(COLUMN_DESCRIPTION))
                     val category = it.getString(it.getColumnIndex(COLUMN_CATEGORY))
-                    expenses.add(Expenses(id = id, title = title, amount = amount.toDouble(), date = date,description = description,category = category))
+                    val time = it.getString(it.getColumnIndex(COLUMN_TIME))
+                    val typeString = it.getString(it.getColumnIndex(COLUMN_TYPE))
+                    val type = BudgetType.valueOf(typeString)
+                    budgets.add(Budget(id = id, title = title,
+                        amount = amount, date = date,
+                        description = description, category = category,
+                        time = time, type = type))
                 }
             }
             db.close()
-            return expenses
+            return budgets
         }
 
-        fun deleteExpense(id: String) {
+        fun deleteBudget(id: String) {
             val db = this.writableDatabase
             db.delete(TABLE_NAME, "$COLUMN_ID=?", arrayOf(id))
             db.close()

@@ -17,5 +17,10 @@
     <string name="expense_amount">Expense_Amount</string>
     <string name="expense_description">Expense_Description</string>
     <string name="expense_date">Expense_Date</string>
+    <string name="amount">Amount</string>
+    <string name="title">Title</string>
+    <string name="add_category">Add Category</string>
+    <string name="description">Description</string>
+    <string name="category">Category</string>
 
 </resources>
