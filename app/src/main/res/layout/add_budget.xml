@@ -26,7 +26,7 @@
     <LinearLayout
         android:id="@+id/layoutBudgetAddInfo"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
@@ -39,55 +39,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/txtAddBudgetTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:labelFor="@id/etAddBudgetTitle"
-            android:text="@string/title" />
-
-        <EditText
-            android:id="@+id/etAddBudgetTitle"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
-            android:ems="10"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:maxLength="35"
-            android:text="@string/title"
-            tools:ignore="VisualLintTextFieldSize" />
-
-        <TextView
-            android:id="@+id/txtAddBudgetDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:importantForAutofill="no"
-            android:labelFor="@id/etAddBudgetDescription"
-            android:text="@string/description" />
-
-        <EditText
-            android:id="@+id/etAddBudgetDescription"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
-            android:ems="10"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:maxLength="115"
-            android:text="@string/description"
-            tools:ignore="VisualLintTextFieldSize" />
 
         <TextView
             android:id="@+id/txtAddBudgetAmount"
@@ -140,7 +91,7 @@
 
         </LinearLayout>
 
-        <Spinner
+        <TextView
             android:id="@+id/spinAddBudgetCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -148,7 +99,55 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
-            android:minHeight="48dp" />
+            android:background="@android:drawable/editbox_background"
+            android:drawableEnd="@drawable/ic_arrow"
+            android:gravity="center_vertical"
+            android:hint="@string/select_category"
+            android:minHeight="48dp"
+            tools:ignore="UseCompatTextViewDrawableXml" />
+
+        <TextView
+            android:id="@+id/txtAddBudgetType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:importantForAutofill="no"
+            android:labelFor="@id/etAddBudgetAmount"
+            android:text="Type" />
+
+        <RadioGroup
+            android:id="@+id/rgrpbudgetType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:text="@string/expense"
+                android:textColor="@drawable/radio_text_color" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:text="@string/income"
+                android:textColor="@drawable/radio_text_color" />
+
+        </RadioGroup>
+
 
     </LinearLayout>
 

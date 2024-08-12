@@ -6,17 +6,6 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/txtBudgetCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="23dp"
-        android:contentDescription="@string/expense_date"
-        android:text="@string/expense_date"
-        app:layout_constraintEnd_toStartOf="@+id/txtBudgetTime"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/txtBudgetTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,33 +21,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:contentDescription="@string/expense_amount"
         android:text="@string/expense_amount"
         app:layout_constraintStart_toEndOf="@+id/imgBudget"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtBudgetDescription"
+        android:id="@+id/txtBudgetCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="1dp"
-        android:contentDescription="@string/expense_description"
-        android:text="@string/expense_description"
-        app:layout_constraintStart_toEndOf="@+id/imgBudget"
-        app:layout_constraintTop_toBottomOf="@+id/txtBudgetTitle" />
-
-    <TextView
-        android:id="@+id/txtBudgetTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="1dp"
-        android:contentDescription="@string/your_expense"
-        android:text="@string/your_expense"
+        android:contentDescription="@string/category"
+        android:text="@string/category"
         app:layout_constraintStart_toEndOf="@+id/imgBudget"
         app:layout_constraintTop_toBottomOf="@+id/txtBudgetAmount" />
+
+    <TextView
+        android:id="@+id/txtBudgetType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="1dp"
+        android:contentDescription="@string/type"
+        android:text="@string/type"
+        app:layout_constraintStart_toEndOf="@+id/imgBudget"
+        app:layout_constraintTop_toBottomOf="@+id/txtBudgetCategory" />
 
     <ImageView
         android:id="@+id/imgBudget"

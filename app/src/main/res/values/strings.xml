@@ -22,5 +22,11 @@
     <string name="add_category">Add Category</string>
     <string name="description">Description</string>
     <string name="category">Category</string>
+    <string name="type">Type</string>
+    <string name="categories">Categories</string>
+    <string name="select_category">Select category</string>
+    <string name="expense">Expense</string>
+    <string name="income">Income</string>
+
 
 </resources>

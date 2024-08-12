@@ -6,13 +6,10 @@ import java.util.Locale
 
 data class Budget(
     val id: String,
-    val title: String,
     val amount: Double,
     val type: BudgetType,
     val category: String,
-    val description: String,
-    val date: String = getCurrDate(),
-    val time: String = getCurrTime()
+    val date: String = getCurrDate() + " " + getCurrTime()
 )
 
 fun getCurrDate() : String  = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
