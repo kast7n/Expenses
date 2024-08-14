@@ -35,15 +35,8 @@
 
     <!-- List view to insert list of items-->
 
-    <Button
-        android:id="@+id/btnAddCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Category"
-        android:visibility="gone" />
-
     <ListView
-        android:id="@+id/lvCategories"
+        android:id="@+id/lvCategories2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -1,44 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <ImageView
+        android:id="@+id/imgMinimiseAddBudget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.Expenses.AppBarOverlay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:rotationX="180"
+        app:srcCompat="@drawable/ic_arrow" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.Expenses.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layoutBudgetAddInfo"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="100dp"
+
         android:background="@drawable/customborder"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
+
 
         <TextView
             android:id="@+id/txtAddBudgetAmount"
@@ -54,101 +42,115 @@
             android:id="@+id/etAddBudgetAmount"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_below="@id/txtAddBudgetAmount"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
             android:ems="10"
+            android:hint="@string/amount"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
             android:maxLength="15"
-            android:text="@string/amount"
             tools:ignore="VisualLintTextFieldSize" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtAddBudgetCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:text="@string/category" />
-
-            <TextView
-                android:id="@+id/txtAddBudgetNewCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:text="@string/add_category"
-                android:textAlignment="textEnd"
-                android:textColor="#673AB7" />
-
-        </LinearLayout>
-
         <TextView
-            android:id="@+id/spinAddBudgetCategory"
+            android:id="@+id/txtAddBudgetCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etAddBudgetAmount"
+            android:layout_marginStart="20dp"
+            android:text="@string/category" />
+
+        <EditText
+            android:id="@+id/etBudgetCategoriesAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/txtAddBudgetCategory"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
             android:background="@android:drawable/editbox_background"
-            android:drawableEnd="@drawable/ic_arrow"
             android:gravity="center_vertical"
             android:hint="@string/select_category"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:minHeight="48dp"
             tools:ignore="UseCompatTextViewDrawableXml" />
+
+        <ListView
+            android:id="@+id/lvCategories"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_below="@id/etBudgetCategoriesAdd"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:translationZ="5dp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/txtAddBudgetType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/etBudgetCategoriesAdd"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:importantForAutofill="no"
             android:labelFor="@id/etAddBudgetAmount"
-            android:text="Type" />
+            android:text="@string/type" />
 
         <RadioGroup
-            android:id="@+id/rgrpbudgetType"
-            android:layout_width="match_parent"
+            android:id="@+id/rgrpBudgetType"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/txtAddBudgetType"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:orientation="horizontal">
 
             <RadioButton
+                android:id="@+id/rbtnExpense"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_height="match_parent"
+                android:layout_margin="14dp"
                 android:background="@drawable/radio_selector"
                 android:button="@android:color/transparent"
                 android:elevation="4dp"
                 android:padding="20dp"
+                android:tag="Expense"
                 android:text="@string/expense"
-                android:textColor="@drawable/radio_text_color" />
+                android:checked="true"
+                android:textColor="@drawable/radio_text_color"
+                tools:ignore="TextContrastCheck" />
 
             <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:id="@+id/rbtnIncome"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="14dp"
                 android:background="@drawable/radio_selector"
                 android:button="@android:color/transparent"
                 android:elevation="4dp"
                 android:padding="20dp"
+                android:tag="Income"
                 android:text="@string/income"
-                android:textColor="@drawable/radio_text_color" />
+                android:textColor="@drawable/radio_text_color"
+                tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
         </RadioGroup>
 
+        <Button
+            android:id="@+id/btnAddBudget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rgrpBudgetType"
+            android:text="@string/add"
+            tools:ignore="VisualLintButtonSize" />
 
-    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+</LinearLayout>

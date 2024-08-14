@@ -5,7 +5,7 @@ import java.util.Date
 import java.util.Locale
 
 data class Budget(
-    val id: String,
+    val id: String = "",
     val amount: Double,
     val type: BudgetType,
     val category: String,
