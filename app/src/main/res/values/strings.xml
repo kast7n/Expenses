@@ -28,6 +28,8 @@
     <string name="expense">Expense</string>
     <string name="income">Income</string>
     <string name="add">Add</string>
+    <string name="choose_date">Date and Time</string>
+    <string name="set">Set</string>
 
 
 </resources>

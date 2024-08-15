@@ -1,5 +1,6 @@
 package com.example.expenses
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.text.Editable
@@ -11,17 +12,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TimePicker
 import androidx.fragment.app.Fragment
 import com.example.expenses.helpers.DatabaseHelper
 import com.example.expenses.models.Budget
 import com.example.expenses.models.BudgetType
 import com.example.expenses.models.Category
+import com.example.expenses.models.getCurrDate
+import com.example.expenses.models.getCurrTime
 import com.example.expenses.ui.home.HomeFragment
+import java.text.SimpleDateFormat
+import java.util.GregorianCalendar
+import java.util.Locale
 
 class AddBudgetFragment : Fragment() {
     private var categories = ArrayList<String>()
@@ -35,13 +43,13 @@ class AddBudgetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.add_budget, container, false)
-
+        var time = getCurrDate() + " " + getCurrTime()
         val imgClose = view.findViewById<ImageView>(R.id.imgMinimiseAddBudget)
         var minimised = false
         db = DatabaseHelper(requireContext())
         categories = db!!.getAllCategoriesNames()
         listView = view.findViewById(R.id.lvCategories)
-        var selectedType: String? = null
+        var selectedType: String? = "Expense"
         val etAmount = view.findViewById<EditText>(R.id.etAddBudgetAmount)
         txtCategory = view.findViewById(R.id.etBudgetCategoriesAdd)
 
@@ -82,7 +90,7 @@ class AddBudgetFragment : Fragment() {
 
             if (txtCategory.text.isNotEmpty() && etAmount.text.isNotEmpty()) {
                 val amount = etAmount.text.toString().toDouble()
-                val newBudget = Budget(amount = amount, category = category, type = type)
+                val newBudget = Budget(amount = amount, category = category, type = type, date = time)
                 db!!.insertBudget(newBudget)
                 val parentHomeFragment = parentFragment as? HomeFragment
                 parentHomeFragment?.refreshBudgets()
@@ -103,6 +111,40 @@ class AddBudgetFragment : Fragment() {
                 imgClose.rotationX = 0F
             }
         }
+
+
+
+
+        val etDateTime = view.findViewById<EditText>(R.id.etAddBudgetDateTime)
+        etDateTime.setText(time)
+
+        val dialogView = View.inflate(activity, R.layout.date_time_picker, null)
+        val alertDialog = AlertDialog.Builder(activity).create()
+
+        dialogView.findViewById<View>(R.id.date_time_set).setOnClickListener {
+            val datePicker = dialogView.findViewById<DatePicker>(R.id.date_picker)
+            val timePicker = dialogView.findViewById<TimePicker>(R.id.time_picker)
+
+            val calendar = GregorianCalendar(
+                datePicker.year,
+                datePicker.month,
+                datePicker.dayOfMonth,
+                timePicker.hour,
+                timePicker.minute
+            )
+
+            val formatter = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+            time = formatter.format(calendar.time)
+            etDateTime.setText(time)
+            alertDialog.dismiss()
+        }
+
+        etDateTime.setOnClickListener {alertDialog.setView(dialogView)
+            alertDialog.show()}
+
+
+
+
 
         return view
     }

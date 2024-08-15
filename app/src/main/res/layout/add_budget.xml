@@ -118,11 +118,11 @@
                 android:layout_margin="14dp"
                 android:background="@drawable/radio_selector"
                 android:button="@android:color/transparent"
+                android:checked="true"
                 android:elevation="4dp"
                 android:padding="20dp"
                 android:tag="Expense"
                 android:text="@string/expense"
-                android:checked="true"
                 android:textColor="@drawable/radio_text_color"
                 tools:ignore="TextContrastCheck" />
 
@@ -133,6 +133,7 @@
                 android:layout_margin="14dp"
                 android:background="@drawable/radio_selector"
                 android:button="@android:color/transparent"
+                android:checked="false"
                 android:elevation="4dp"
                 android:padding="20dp"
                 android:tag="Income"
@@ -142,11 +143,40 @@
 
         </RadioGroup>
 
+        <TextView
+            android:id="@+id/txtAddBudgetDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rgrpBudgetType"
+            android:layout_marginStart="20dp"
+            android:ems="10"
+            android:hint="@string/choose_date" />
+
+        <EditText
+            android:id="@+id/etAddBudgetDateTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtAddBudgetDateTime"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@android:drawable/editbox_background"
+            android:drawableEnd="@drawable/baseline_calendar_month_24"
+            android:focusable="auto"
+            android:focusableInTouchMode="false"
+            android:gravity="center_vertical"
+            android:hint="@string/choose_date"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            tools:ignore="UseCompatTextViewDrawableXml" />
+
         <Button
             android:id="@+id/btnAddBudget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rgrpBudgetType"
+            android:layout_below="@id/etAddBudgetDateTime"
             android:text="@string/add"
             tools:ignore="VisualLintButtonSize" />
 
